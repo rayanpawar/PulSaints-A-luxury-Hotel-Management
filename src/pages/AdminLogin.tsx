@@ -36,7 +36,7 @@ const AdminLogin = () => {
               <Hotel className="h-12 w-12 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Azure Hotel</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">PulSaints</h1>
           <p className="text-white/80">Administrator Portal</p>
         </div>
 

@@ -49,7 +49,7 @@ const CustomerLogin = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <Hotel className="h-12 w-12 text-primary mr-3" />
-            <span className="text-3xl font-bold text-foreground">Azure Hotel</span>
+            <span className="text-3xl font-bold text-foreground">PulSaints</span>
           </div>
           <p className="text-muted-foreground">Access your guest portal</p>
         </div>

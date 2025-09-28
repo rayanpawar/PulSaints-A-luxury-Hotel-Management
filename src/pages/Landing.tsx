@@ -43,7 +43,7 @@ const Landing = () => {
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Welcome to <span className="text-hotel-blue">Azure Hotel</span>
+            Welcome to <span className="text-hotel-blue">PulSaints</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90">
             Experience luxury and comfort in the heart of the city
@@ -74,7 +74,7 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-foreground mb-4">
-              Why Choose Azure Hotel?
+              Why Choose PulSaints?
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We provide exceptional service and amenities to make your stay unforgettable
@@ -132,14 +132,14 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-4">
             <Hotel className="h-8 w-8 text-primary mr-2" />
-            <span className="text-2xl font-bold">Azure Hotel</span>
+            <span className="text-2xl font-bold">PulSaints</span>
           </div>
           <div className="flex items-center justify-center text-gray-400 mb-4">
             <MapPin className="h-4 w-4 mr-2" />
             <span>123 Luxury Avenue, City Center, State 12345</span>
           </div>
           <p className="text-gray-400">
-            © 2024 Azure Hotel. All rights reserved.
+            © 2024 PulSaints. All rights reserved.
           </p>
         </div>
       </footer>

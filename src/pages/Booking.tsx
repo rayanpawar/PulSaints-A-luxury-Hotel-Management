@@ -227,7 +227,7 @@ const Booking = () => {
                   <h4 className="font-semibold">{roomType}</h4>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <MapPin className="h-4 w-4" />
-                    <span>Azure Hotel</span>
+                    <span>PulSaints</span>
                   </div>
                 </div>
 

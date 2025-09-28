@@ -79,7 +79,7 @@ const CheckInOut = () => {
       setSelectedBooking({...selectedBooking, status: "checked-in"});
       toast({
         title: "Check-in Successful",
-        description: "Welcome to Azure Hotel! Enjoy your stay.",
+        description: "Welcome to PulSaints! Enjoy your stay.",
       });
     }, 1500);
   };

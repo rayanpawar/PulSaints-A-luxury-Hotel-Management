@@ -97,7 +97,7 @@ const Invoice = () => {
                     <Hotel className="h-8 w-8 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-primary">Azure Hotel</h2>
+                    <h2 className="text-2xl font-bold text-primary">PulSaints</h2>
                     <p className="text-muted-foreground">Luxury Accommodation & Services</p>
                   </div>
                 </div>
@@ -261,8 +261,8 @@ const Invoice = () => {
 
               {/* Footer */}
               <div className="mt-8 text-center text-sm text-muted-foreground">
-                <p>Thank you for choosing Azure Hotel!</p>
-                <p>For any questions regarding this invoice, please contact us at billing@azurehotel.com</p>
+                <p>Thank you for choosing PulSaints!</p>
+                <p>For any questions regarding this invoice, please contact us at billing@pulsaints.com</p>
               </div>
             </CardContent>
           </Card>

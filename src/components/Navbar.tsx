@@ -17,7 +17,7 @@ const Navbar = () => {
           >
             <Hotel className="h-8 w-8 text-primary mr-2" />
             <span className="text-xl font-bold text-foreground">
-              Azure Hotel
+              PulSaints
             </span>
           </div>
 

@@ -139,7 +139,7 @@ const Landing = () => {
             <span>123 Luxury Avenue, City Center, State 12345</span>
           </div>
           <p className="text-gray-400">
-            © 2024 PulSaints. All rights reserved.
+            © 2025 PulSaints. All rights reserved.
           </p>
         </div>
       </footer>

@@ -14,6 +14,7 @@ import CheckInOut from "./pages/CheckInOut";
 import Invoice from "./pages/Invoice";
 import AdminReports from "./pages/AdminReports";
 import AdminNotifications from "./pages/AdminNotifications";
+import CustomerBookings from "./pages/CustomerBookings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/customer-login" element={<CustomerLogin />} />
           <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+          <Route path="/customer-bookings" element={<CustomerBookings />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/checkinout" element={<CheckInOut />} />
           <Route path="/invoice" element={<Invoice />} />

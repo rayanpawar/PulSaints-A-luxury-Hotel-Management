@@ -172,7 +172,7 @@ const CustomerDashboard = () => {
                   variant={room.available ? "hero" : "outline"}
                   className="w-full"
                   disabled={!room.available}
-                  onClick={() => handleBookRoom(room.id)}
+                  onClick={() => navigate(`/booking?room=${encodeURIComponent(room.name)}&price=${room.price}`)}
                 >
                   {room.available ? "Book Now" : "Not Available"}
                 </Button>

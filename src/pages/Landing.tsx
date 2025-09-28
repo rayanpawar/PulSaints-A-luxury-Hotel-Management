@@ -136,7 +136,7 @@ const Landing = () => {
           </div>
           <div className="flex items-center justify-center text-gray-400 mb-4">
             <MapPin className="h-4 w-4 mr-2" />
-            <span>123 Luxury Avenue, City Center, State 12345</span>
+            <span>123 ZAZA Community, City Center, State 12345</span>
           </div>
           <p className="text-gray-400">
             © 2025 PulSaints. All rights reserved.

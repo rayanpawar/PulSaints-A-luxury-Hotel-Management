@@ -61,7 +61,7 @@ const AdminLogin = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@azurehotel.com"
+                    placeholder="admin@pulsaints.com"
                     className="pl-10"
                     required
                   />

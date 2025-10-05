@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/enhanced-button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/enhanced-card";
 import { Badge } from "@/components/ui/badge";
@@ -9,10 +9,49 @@ import Navbar from "@/components/Navbar";
 import deluxeRoom from "@/assets/deluxe-room.jpg";
 import standardRoom from "@/assets/standard-room.jpg";
 import suiteRoom from "@/assets/suite-room.jpg";
+import { supabase } from "@/integrations/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<{ first_name: string; last_name: string } | null>(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        navigate("/customer-login");
+        return;
+      }
+
+      setUser(session.user);
+
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("first_name, last_name")
+        .eq("id", session.user.id)
+        .single();
+
+      if (profileData) {
+        setProfile(profileData);
+      }
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        navigate("/customer-login");
+      } else {
+        setUser(session.user);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const rooms = [
     {
@@ -66,7 +105,7 @@ const CustomerDashboard = () => {
         {/* Welcome Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            Welcome back, John!
+            Welcome back, {profile?.first_name || "Guest"}!
           </h1>
           <p className="text-muted-foreground">
             Find the perfect room for your stay

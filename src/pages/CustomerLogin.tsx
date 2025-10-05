@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/enhanced-button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/enhanced-card";
 import { Input } from "@/components/ui/input";
@@ -7,39 +7,91 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Hotel, Mail, Lock, User, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const CustomerLogin = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate("/customer-dashboard");
+      }
+    };
+    checkAuth();
+  }, [navigate]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
       toast({
-        title: "Login Successful",
-        description: "Welcome back! Redirecting to your dashboard...",
+        title: "Login Failed",
+        description: error.message,
+        variant: "destructive",
       });
-      navigate("/customer-dashboard");
-    }, 1500);
+      setIsLoading(false);
+      return;
+    }
+
+    toast({
+      title: "Login Successful",
+      description: "Welcome back! Redirecting to your dashboard...",
+    });
+    navigate("/customer-dashboard");
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get("signupEmail") as string;
+    const password = formData.get("signupPassword") as string;
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
+    const phone = formData.get("phone") as string;
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/customer-dashboard`,
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          phone: phone,
+        },
+      },
+    });
+
+    if (error) {
       toast({
-        title: "Account Created",
-        description: "Your account has been created successfully!",
+        title: "Signup Failed",
+        description: error.message,
+        variant: "destructive",
       });
-      navigate("/customer-dashboard");
-    }, 1500);
+      setIsLoading(false);
+      return;
+    }
+
+    toast({
+      title: "Account Created",
+      description: "Your account has been created successfully!",
+    });
+    navigate("/customer-dashboard");
   };
 
   return (
@@ -76,6 +128,7 @@ const CustomerLogin = () => {
                       <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         placeholder="Enter your email"
                         className="pl-10"
@@ -89,6 +142,7 @@ const CustomerLogin = () => {
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="password"
+                        name="password"
                         type="password"
                         placeholder="Enter your password"
                         className="pl-10"
@@ -116,6 +170,7 @@ const CustomerLogin = () => {
                         <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                         <Input
                           id="firstName"
+                          name="firstName"
                           placeholder="First name"
                           className="pl-10"
                           required
@@ -126,6 +181,7 @@ const CustomerLogin = () => {
                       <Label htmlFor="lastName">Last Name</Label>
                       <Input
                         id="lastName"
+                        name="lastName"
                         placeholder="Last name"
                         required
                       />
@@ -137,6 +193,7 @@ const CustomerLogin = () => {
                       <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="signupEmail"
+                        name="signupEmail"
                         type="email"
                         placeholder="Enter your email"
                         className="pl-10"
@@ -150,6 +207,7 @@ const CustomerLogin = () => {
                       <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
                         placeholder="Enter your phone number"
                         className="pl-10"
@@ -163,6 +221,7 @@ const CustomerLogin = () => {
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="signupPassword"
+                        name="signupPassword"
                         type="password"
                         placeholder="Create a password"
                         className="pl-10"
